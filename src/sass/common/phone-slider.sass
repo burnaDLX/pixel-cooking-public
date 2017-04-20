@@ -1,0 +1,183 @@
+.phone-container
+	margin: 0
+	position: relative
+	transform: scale(1)
+	transform-origin: top left
+	+size(370px, 740px)
+	padding: 25px 5px 25px 5px
+	border-radius: 10px
+	background-color: #FAF0E6
+	@media #{$small-phone}
+		// centered slider
+		transform: scale(0.8) // 222 x 444
+	@media #{$big-phone}
+		transform: scale(0.7) // 259 x 518
+	@media #{$tablet}
+		transform: scale(0.8) // 292 x 592
+	@media #{$laptop}
+		transform: scale(0.9) // 333 x 666
+	@media #{$desktop}
+		transform: scale(1)
+	.phone-elements
+
+		.speaker, .camera, .home-button
+			position: absolute
+			transform: translateX(-50%)
+			left: 50%
+
+		.speaker		
+			top: 8px
+			+size(80px, 8px)
+			border-radius: 6px
+			background-color: #666
+			border: 2px solid #999
+
+		.camera
+			border-radius: 50%
+			top: 6.5px
+			left: calc( 50% + 60px )		
+			+size(12px, 12px)
+			border: 2px solid #aaa
+			background-color: #333
+
+		.home-button
+			bottom: 12.5px
+			+size(50px, 50px)
+			border-radius: 50%
+			border: 2px solid #ddd
+
+	.swiper-container
+		border-radius: 6px
+		+size(360px, 640px)
+		overflow: hidden
+		background-color: #222
+		
+		.swiper-fs-button
+			position: absolute
+			right: 5px
+			top: 5px
+			display: none
+			background-color: $dark-blue
+			z-index: 7
+			+size(60px, 60px)
+			cursor: pointer
+			transition: background-color 0.25s ease
+
+			.swiper-fs-icon
+				@extend %center
+				+size(30px, 30px)
+				border: 4px solid $neon-green
+
+				span
+					@extend %center
+					background-color: $dark-blue
+					&:nth-child(1)
+						+size(30px, 10px)
+					&:nth-child(2)
+						+size(10px, 30px)
+		
+
+		.swiper-close-fs-button
+			background-color: $dark-blue	
+			position: absolute
+			right: 5px
+			top: 5px
+			+size(48px, 48px)
+			cursor: pointer
+			display: none
+			z-index: 7
+			position: absolute
+			padding-top: 7px
+			padding-left: 9px
+
+			.swiper-cross
+				background-color: $neon-green
+				+size(30px, 3px)
+				&:nth-child(1)
+					margin-top: 15px
+					transform: rotate(45deg)
+				&:nth-child(2)
+					margin-top: -3px
+					transform: rotate(-45deg)
+
+
+		.swiper-wrapper
+
+			.swiper-slide
+
+				img
+					z-index: 5
+					cursor: pointer
+					user-select: none
+					display: inline-block
+					+size(100%, 100%)
+					max-width: 720px
+					max-height: 1280px
+					@extend %center
+
+
+	.slider-nav
+		margin-top: 10px
+		position: relative
+		z-index: 100
+		.swiper-button-prev,
+		.swiper-button-next
+			margin: 0
+			top: 87px
+			color: $neon-green
+			transform: translateX(-50%)
+			@media (max-width: $media-s) and (orientation: portrait)//#{$small-phone}
+				display: none
+		.swiper-button-prev
+			left: 8%
+		.swiper-button-next
+			left: 92%
+	.swiper-pagination
+		position: absolute
+		left: 50%
+		top: 95px
+		transform: translateX(-50%)
+		width: 90%
+		margin: auto
+		text-align: center
+	.swiper-pagination-bullet
+		background-color: transparent
+		border: 2px solid $white
+		opacity: 1 // override swiper preset
+		+size(30px, 30px)
+		margin: 0 10px
+		&:first-child
+			margin-left: 0
+		&:last-child
+			margin-right: 0	
+	.swiper-pagination-bullet-active
+		background-color: $neon-green
+		border: 2px solid $neon-green
+
+
+.fullscreen-wrapper
+	max-width: 100%
+	max-height: 100%
+	border-radius: 0px !important
+.fullscreen
+	display: -webkit-box
+	display: -ms-flexbox
+	display: -webkit-flex
+	display: flex
+	-webkit-box-pack: center
+	-ms-flex-pack: center
+	-webkit-justify-content: center
+	justify-content: center
+	-webkit-box-align: center
+	-ms-flex-align: center
+	-webkit-align-items: center
+	align-items: center
+	text-align: center
+	margin: auto
+	overflow-y: auto !important
+	& > img
+		@media (max-width: $media-m)
+			top: 0 !important
+			transform: translate(-50%, 0) !important
+			max-width: 100% !important
+			height: auto !important

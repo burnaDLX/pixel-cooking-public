@@ -1,0 +1,49 @@
+@import '../common/helper.sass'
+@import '../common/background.sass'
+@import '../common/menu.sass'
+@import '../common/scrollup.sass'
+@import '../common/footer.sass'
+@import '../common/modal.sass'
+
+@keyframes fade-up
+  0%
+    transform: translateY(200px)
+    opacity: 0
+  100%
+    transform: translateY(0)
+    opacity: 1
+
+
+body
+	overflow-y: hidden
+	.container
+		$device-list: $small-phone $big-phone $tablet $laptop $desktop	
+		
+		@each $device in $device-list
+			h1
+				$bottom-border: index($device-list, $device)
+				$border-padding: index($device-list, $device)
+				@media #{$device}
+					.main-headline
+						// $bottom-border: #{ $bottom-border+9 + "px" } // 10-14px //10.04
+						$bottom-border: #{ $bottom-border+7 + "px" } // 8-12px
+						border-bottom: $bottom-border solid $neon-green
+						// $border-padding: #{ 68 + 37*$border-padding + "px" }  //~110px - 250px //10.04
+						$border-padding: #{ 105 + 25*$border-padding + "px" }  // 130px,155px,180px,205px,230px
+						height: $border-padding !important
+
+		h1
+			margin: 0
+			.main-headline
+				display: inline-block
+				font-size: inherit
+
+		.pxc-outro-wrapper
+			height: 200px !important
+			.section-outro,
+			.pxc-btn-wrapper
+				transform: translateY(200px)
+				opacity: 0
+				animation: fade-up 0.6s 0.4s ease-out
+			.section-outro
+				animation: fade-up 0.5s 0.5s ease-out

@@ -1,0 +1,111 @@
+// used z-indexes: 60
+
+@keyframes slide-modal-up
+  from
+    transform: translateY(100vh)
+  to
+    transform: translateY(0)
+
+@keyframes slide-modal-down
+  from
+    transform: translateY(0)
+  to
+    transform: translateY(100vh)
+
+.slide-modal-up
+  animation: slide-modal-up 0.4s $easeOutSine
+.slide-modal-down
+  animation: slide-modal-down 0.4s $easeInSine
+
+body
+
+	.pxc-modal-wrapper
+		display: none
+		position: fixed
+		+size(100%, 100%)
+		// top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		z-index: 60
+		.pxc-modal
+			overflow: hidden
+			+size(inherit, inherit)
+			position: relative
+			background-color: $light-blue
+			.pxc-modal-content
+				+size(inherit, inherit)
+				overflow-y: auto
+				overflow-x: hidden
+				position: relative
+				margin: 0 auto
+				padding-top: 50px
+				@media (max-width: $media-m)
+					padding-top: 0px
+				opacity: 0
+				.pxc-modal-close-cross
+					padding: 3px 3px
+					border-radius: 4px
+					position: absolute
+					height: 48px
+					top: 12px
+					right: 12px
+					cursor: pointer
+					.pxc-burger-cross
+						background-color: $neon-green
+						margin-top: 20px
+						+size(40px, 4px)
+						&:nth-child(1)
+							transform: rotate(45deg)
+						&:nth-child(2)
+							margin-top: -5px
+							transform: rotate(-45deg)
+
+				.container
+					padding-top: 15px
+					@media (max-width: $media-m)
+						padding-top: 0
+					.pxc-modal-headline
+						font-family: $head-font
+						color: $blue-grey-light
+						line-height: 1.6
+						+text-elements(2.6, 3.3, 4, 4.7, 5.4)
+						@each $device in $device-list
+							$i: index($device-list, $device)
+							@media #{$device}
+								margin: #{ $i*10}px 0
+								$i: $i + 1 // 2px - 4px
+								@if $i >= 4
+									$i: 4
+									border-bottom: #{ $i + 'px'} solid $neon-green
+								@else
+									border-bottom: #{ $i + 'px'} solid $neon-green
+
+					.pxc-modal-subheadline
+						font-family: $text-font
+						color: $blue-grey-light
+						//float: left
+						margin: 20px 0
+						+text-elements(1.9, 1.9, 2.2, 2.2, 2.2)
+				
+					.pxc-modal-text-headline
+						color: $blue-grey
+						+text-elements(1.7, 1.7, 2, 2, 2)
+					.pxc-modal-text
+						vertical-align: top
+						color: $blue-grey-light
+						//padding: 15px 15px 35px 15px
+						padding: 15px 0 15px 0
+						+text-elements(1.5, 1.5, 1.8, 1.8, 1.8)
+						&.italic
+							@media (max-width: $media-m)
+								padding-top: 0
+						& > .italic
+							font-size: inherit
+						.pxc-modal-envelope	
+							+font-size(1.6)
+							margin-right: 5px
+						a
+							+text-elements(1.5, 1.5, 1.8, 1.8, 1.8)
+					.pxc-modal-close-btn
+						margin-bottom: 30px

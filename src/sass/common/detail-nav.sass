@@ -1,0 +1,108 @@
+@keyframes sidebar-touch-animation
+  0%
+    transform: translateX(115px)
+    background-color: rgba(255, 255, 255, 0.25)
+  25%
+    transform: translateX(0)
+    background-color: $dark-blue
+  75%
+    transform: translateX(0)
+    background-color: $dark-blue
+  100%  
+    transform: translateX(115px)
+    background-color: rgba(255, 255, 255, 0.25)
+
+
+
+// for touch devices play an animation 
+// instead of an effect based on hover
+.sidebar
+  overflow-x: hidden
+  z-index: 10
+  position: absolute
+  right: 0
+  display: inline-block
+  &:hover
+    // read https://www.sitepoint.com/introduction-css-will-change-property/
+    // best use of will-change property to increase memory consumption only ad-hoc
+    will-change: transform, background-color, font-weight
+  @each $device in $device-list
+    $i: index($device-list, $device)
+    @media #{$device}
+      $i: $i*42
+      top: #{135 + $i + 'px'}
+      //30, 50, 45
+      @if $device == $small-phone
+        display: none
+        
+      @else if $device == $big-phone or $device == $tablet or $device == $laptop
+        //top: 290px
+        & > ul > li
+          transform: translateX(115px)
+          transition: transform .4s ease, background-color .3s ease
+          background-color: rgba(255, 255, 255, 0.15)
+          &:hover // triggered with touch
+            animation: sidebar-touch-animation 0.8s ease
+
+      @else if $device == $desktop
+        //top: 330px
+        & > ul > li
+          transform: translateX(0)
+          transition: background-color .3s ease
+          background-color: rgba(255, 255, 255, 0.15)
+
+
+  ul
+    list-style: none
+    li
+      border-radius: 4px
+      margin: 15px 0
+      +size(155px, 40px)
+      a
+        user-select: none
+        +size(100%, 100%)
+        position: absolute
+        top: 8px
+        left: 12px
+        color: $white
+        //+font-size(1.2) // 10.04.17
+        +font-size(1.8)
+        span
+          +font-size(1.8) // added to overwrite value from helper - 10.04.17
+          margin-right: 15px
+          color: $neon-green
+
+
+// active and fixed sidebar
+// applied dynamtically with JS
+.active
+  font-weight: 600
+  border-left: 6px solid $neon-green
+  a
+    left: 9px !important
+
+.fixed
+  position: fixed
+  top: 50px
+  right: 0
+
+
+// for devices without touch real hover effects
+html.no-touch 
+  .sidebar
+    @each $device in $device-list
+      @media #{$device}
+        
+        @if $device == $big-phone or $device == $tablet or $device == $laptop
+          & > ul > li
+            &:hover
+                background-color: $dark-blue
+                transform: translateX(0)
+                transition: transform .4s ease, background-color .3s ease
+                animation: none
+
+        @else if $device == $desktop
+          & > ul > li
+            &:hover
+              background-color: $dark-blue
+              transition: background-color .3s ease

@@ -1,0 +1,134 @@
+doctype html
+html.no-js(lang="de")
+    head
+        include common/head.pug
+        title #{title}
+        meta(name='description', content="Auf dieser Seite erfahren Sie mehr über mich.")
+        link(rel="stylesheet", href="stylesheets/pages/about-me.css")
+         
+    body
+        header
+            include common/detail-nav.pug
+            include common/menu.pug
+
+        main
+
+            .container
+                .pure-g.page-wrapper.no-fade-in
+                    .pure-u-1
+
+                        h2.ab-headline-mobile: span #{title}
+                        
+                        .pure-g.ab-me-wrapper
+                            .pure-u-1
+                                h2.ab-me-headline(data-aos="fade-right", data-aos-delay="400", data-aos-easing="ease-out-back"): span  About
+                                .ab-me-portrait.circle(data-aos="zoom-in-up", data-aos-duration="335", data-aos-delay="150", data-aos-easing="ease-out-back")
+                                h2.ab-me-headline(data-aos="fade-left", data-aos-delay="400", data-aos-easing="ease-out-back"): span Me
+
+                    include common/breadcrumbs.pug
+                    
+                    .space-1
+                    
+                    .pure-u-1
+                        p Masterstudent und Web&shy;enthusiast mit Rollbrett&shy;affinität aus Karlsruhe.        
+
+                    .pure-u-1.ab-section#short-vita
+                        h3
+                            span.ab-numbering.bold 1
+                            span.ab-underline Short Vita
+
+                        .section-intro.pure-u-1
+                            p.italic.light.l-space-1.space-bottom Die frühen Jahre:
+                            p.light.space-left Im August 1986 geboren und in Baden-Baden aufgewachsen, besuchte ich nach der mittleren Reife das Berufs&shy;kolleg Technik und Medien. Die noch sehr auf Print bedachten Lehr&shy;inhalte weckten leider nicht ausreichend mein Interesse und so begann ich nach einem Jahr statt&shy;dessen eine Lehre zum Koch in einem angesehenen Haus meiner Heimat&shy;stadt. Nach einem Wechsel der Ausbildungs&shy;stätte setzte ich diese in einem 5-Sterne Hotel in Konstanz fort. In der Retro&shy;spektive eine lehrreiche Zeit, dennoch bereue ich es bis heute nicht, der Gastro&shy;nomie den Rücken gekehrt zu haben. So fand ich dann auch schließlich den Weg zurück auf die Schulbank, um die allgemeine Fach&shy;hochschul&shy;reife nachzuholen, um ein Studium zu beginnen.
+                        .section-intro.pure-u-1
+                            p.italic.light.l-space-1.space-bottom Das Studium beginnt:
+                            p.light.space-left In meinem Bachelor&shy;studium der Medien&shy;informatik mit dem Schwer&shy;punkt Online-Medien (B. Sc.) an der HS Furt&shy;wangen erlernte ich die basalen Regel&shy;werke und Methodiken zu Phasen der Konzeption, Design und Ent&shy;wicklung von Medien und ihren Inhalten. Dabei fokussierte ich mich vor allem auf das Ent&shy;wickeln von Inter&shy;faces unter Aspekten des Usability Engineerings und responsiven User Experience Designs, als auch auf die hybride Ent&shy;wicklung von Apps durch Web&shy;technologien.
+                            p.light.space-left Aktuell studiere ich im dritten Semester Inter&shy;active Media Design (M. A.) und habe über die letzten beiden Jahre meine Passion für das Gestalten und Programmieren im digitalen Raum weiter vertieft. 
+                        .space-1
+                        p Ab Oktober 2017 würde ich meine Masterthesis gerne in Ihrem Unternehmen schreiben und diese mit einem vorherigen Praktikum verbinden.
+                        
+                        .space-1
+
+                        .section-intro.pure-u-1
+                            p.italic.light.l-space-1 Zum Nachlesen herunterladen:
+                            p
+                                a.light.pxc-link-wrapper.ab-download(href="//localhost/documents/boerner-lebenslauf.pdf", target="_blank")
+                                    span Mein Lebenslauf in pdf-Format
+                                a.light.pxc-link-wrapper.ab-download(href="//localhost/documents/boerner-notenspiegel-bachelor.pdf", target="_blank")
+                                    span Abschlusszeugnis (Bachelor)
+                                a.light.pxc-link-wrapper.ab-download(href="//localhost/documents/boerner-notenspiegel-master.pdf", target="_blank")
+                                    span aktueller Notenspiegel (Master)
+
+                    .pure-u-1.ab-section#skillset
+                        h3
+                            span.ab-numbering.bold 2
+                            span.ab-underline Skillset
+                        
+                        p.light
+                            | Meinen Workflow versuche ich zeit&shy;gemäß zu gestalten. Beispiels&shy;weise schreibe ich meine Style&shy;sheets gerne in SASS, als Task&shy;runner benutze ich Grunt, Pakete beziehe ich im Regel&shy;&shy;fall über den NodeJS-Package-Manager und zur Versions&shy;verwaltung nutze ich Git. Getestet werden ent&shy;wickelte Projekte von mir aktuell noch mit Online-Tools von Google, GTMetrix oder Webpagetest.
+                        p.light
+                            | Ich fühle mich generell im Frontend wohler, habe aber auch keine Berührungs&shy;ängste mit dem Backend.
+                        
+                        .space-1
+
+                        .section-intro.pure-u-1
+                            p.italic.light.l-space-1 Schauen Sie sich mein aktuelles Skillset an:
+                        
+                        .space-1
+                        
+                        .skill-meter
+                            - var skills = [{ name: 'HTML (Pug/Jade)', level: '90%', postfix: 'html' },{ name: 'CSS (SASS, SCSS)', level: '80%', postfix: 'css' },{ name: 'JavaScript (AngularJS, NodeJS, jQuery, Bootstrap, etc)', level: '70%', postfix: 'js' },{ name: 'NoSQL DBs (CouchDB, neDB)', level: '70%', postfix: 'nosql' },{ name: 'Adobe CC (PS, AI, IN, PR, AE)', level: '70%', postfix: 'cc' },{ name: 'Unity (2D + 3D)', level: '60%', postfix: 'unity' },{ name: 'Taskrunner und Paketverwaltung', level: '60%', postfix: 'tr' },{ name: 'SQL', level: '40%', postfix: 'sql' },{ name: 'PHP', level: '30%', postfix: 'php' }]
+                            
+                            each skill in skills
+                                .pure-g.skill
+                                    //-(data-aos="flip-down")
+                                    .pure-u-1
+                                        p.skill-title.l-space-1 #{skill.name}
+                                    .pure-u-1.skill-level
+                                        p.progress-text.right #{skill.level}
+                                        .progress(style='width: '+skill.level)
+
+                    
+
+                    .pure-u-1.ab-section#why-me
+                        h3
+                            span.ab-numbering.bold 3
+                            span.ab-underline Warum ich?
+
+                        p.light
+                            | Meine Eltern fragten mich, warum ich keine klassische Bewerbung schreiben möchte. „Ich glaube manchmal laufen die Dinge rund ums Netz einfach etwas anders...“ entgegnete ich. Vielleicht liege ich damit auch komplett daneben, aber ich fand es passender diesen Weg auszuprobieren.
+                        p.light
+                            | Den ständigen Wandel in der Webent&shy;wicklung erlebe ich als spannende Heraus&shy;forderung, die mich reizt und dazu antreibt, mich kontinuierlich zu verbessern. Dabei ist mir die praktische Anwendung meiner Fähigkeiten genauso wichtig, wie die Aneignung neuen, theoretischen Wissens.
+                        
+                        .space-1
+
+                        .section-intro.pure-u-1
+                            p.italic.light.l-space-1.space-bottom Klingt ganz gut. Und wo siehst du deine Stärken?
+                            p.light.space-left Gute Frage. Mit einem Gespür für Usability und Micro&shy;interactions und als Fan von guter Typografie, mag ich es, mit meinen Projekten eins zu werden. Vom ersten Konzept bis hin zur letzten Code&shy;zeile, bin ich immer mit Herz&shy;blut bei der Sache. Man sagt mir auch nach, ich kann gut Dinge präsentieren und vor Leuten sprechen.
+
+                        .section-intro.pure-u-1
+
+                            p.italic.light.l-space-1.space-bottom Hast du auch Schwächen?
+                            p.light.space-left Klar hab ich auch Schwächen. Beispielsweise war ich nie ein Mathe-Ass. Richtig schlecht war ich zwar auch nie, aber ebendeshalb hätte ich zunächst nicht gedacht, dass mich Webent&shy;wicklung interessieren könnte. Zudem spornt mich Geld nur bis zu einem gewissen Punkt an, viel wichtiger ist mir die Über&shy;zeugung für eine Sache. Vermutlich trug auch das zu meinem kurvigen Lebens&shy;weg bei. Das ist doch sicher auch noch ein Minus&shy;punkt, oder?
+         
+                    .space-1
+
+                    .pxc-outro-wrapper.pure-u-1.space-1
+                        .section-outro(data-aos='fade-up', data-aos-easing="ease-in-sine")
+                            p.italic.light.l-space-1.center-align Neugierig geworden?
+
+                        .pxc-btn-wrapper(data-aos='fade-up', data-aos-easing="ease-out-sine", data-aos-offset="-10", data-aos-delay="50")
+                            a(href="/work.html").pure-button.pxc-btn-l
+                                span.btn-txt.uppercase.bold.l-space-2 Arbeitsproben
+                                span.btn-layer
+
+                    include common/footer.pug
+
+        include common/modal.pug
+        include common/scrollup.pug
+        include common/scripts.pug
+        
+        script(async, src='/javascripts/pages/about-me.js')
+        script(async, src='/javascripts/common/detail-nav.js')  
+        script(src='/javascripts/common/store-fonts.js')    
+        script(src='//localhost:35729/livereload.js')

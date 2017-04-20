@@ -1,0 +1,45 @@
+doctype html
+html.no-js(lang="de")
+    head
+        include common/head.pug
+        title #{title}
+        meta(name='description', content='Hier lief irgendetwas schief - Sie sind auf meiner Fehlerseite gelandet.')
+        link(rel="stylesheet", href="/stylesheets/pages/error.css")
+            
+    body
+        header
+            include common/menu.pug
+
+        main
+            .container
+                .pure-g.page-wrapper
+                    .pure-u-1
+                        h1
+                            span.main-headline Sorry!
+                    
+                    .pure-u-1.space-1
+                        p.bigger-text.bold.l-space-2 Ursache: #{status} #{message}
+
+                    .pure-u-1.space-1
+                        p.light Das tut mir wirklich leid. Aber versuchen wir das Gute darin zu sehen: in Ihrem Unternehmen bin ich genau richtig, um noch sehr viel mehr zu lernen.
+            
+
+                    .pxc-outro-wrapper.pure-u-1.space-1
+                        .section-outro
+                            p.italic.light.l-space-1.center-align Wollen Sie mir noch eine Chance geben?
+                            
+                        .pxc-btn-wrapper
+                            a(href="/").pure-button.pxc-btn-l
+                                span.btn-txt.uppercase.bold.l-space-2 Zur Hauptseite
+                                span.btn-layer
+
+
+                    include common/footer.pug
+
+        include common/modal.pug
+        include common/scrollup.pug
+        include common/scripts.pug
+        //- empty file   
+        script(async, src='javascripts/pages/error.js')
+        script(src='/javascripts/common/store-fonts.js')
+        script(src='//localhost:35729/livereload.js')

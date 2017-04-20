@@ -1,0 +1,56 @@
+doctype html
+html.no-js(lang='de')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        title="Public PGP Key"
+        meta(name='description', content='Public PGP Key from the pixel.cooking staff')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel="stylesheet", href="/resources/toastr/css/toastr.min.css")
+        link(href="https://fonts.googleapis.com/css?family=Ubuntu+Mono",rel="stylesheet")
+        script(src="/resources/jquery/jquery-2.2.4.min.js")
+        script(src="/resources/toastr/js/toastr.min.js")
+        script(src="/resources/clipboardjs/clipboard.min.js")
+        style(type='text/css').
+            body{text-align:center}pre{text-align:left;border-radius:5px;max-width:450px;margin:50px auto 0;background-color:#81D4FA;color:#37474F;cursor:pointer; padding:30px 20px;font-size:14px;line-height:1.75em;white-space:pre-line;word-wrap:break-word}pre,.toast-success{font-family:'Ubuntu Mono',Helvetica,Verdana,Arial}
+        script.
+            $(document).ready(function () {new Clipboard(".code"); $(".code").click(function () { toastr.options.positionClass = "toast-top-center"; toastr.success('&nbsp; Key copied to clipboard'); }); });
+    body
+        pre#code-html.code(data-clipboard-target="#code-html")
+            | -----BEGIN PGP PUBLIC KEY BLOCK-----
+            | Version: GnuPG v2
+            | &nbsp;
+            | mQENBFiaE+IBCADA1mTrEaroDhvhaB1uOzpup3mwh8Fg3Snagj0XrqxupdEqPCc9
+            | f6qNZsnTXBwE5SfwP6vNkD20dsuPpsvatexjXtYAcWZx/yuKBM/ZeTYhIBY9RXBv
+            | W317CIAUy5MtecK5eRVYLJakmrR4k/cc5tkdk+z6XPj4jFNRR2lXm1pIxRdJOLqW
+            | Laq8ACbKr48U8qBEkB1yKEBC+rhhuh3sprC2sIgnwm4VKtyvU/gt3KJewtYAt6io
+            | ihgZp7dmgj3BfIWZBic/vcqn3dN9TA1Dx/FVloVbpZ0bs08oEzcxSYLiMPjwQHb1
+            | /P7Bu2vOl0EgXrBfm8AdoH4tfG+7ghnr9YXHABEBAAG0I1BpeGVsIENvb2tpbmcg
+            | PGhlbGxvQHBpeGVsLmNvb2tpbmc+iQE5BBMBCAAjBQJYmhPiAhsDBwsJCAcDAgEG
+            | FQgCCQoLBBYCAwECHgECF4AACgkQleM7axv3GFcQSQf/b7p1c/GMzDRikBwgymSw
+            | RqGgXkZullIKyNwcX7cGHORroVM3e31XnCyyjd4AyyQMkWFnMWKw/+B1ZizNP+Vf
+            | dYQnf4Ray2ohndxW9A9/LIlweput8/Y0Sy5vbmGPTLkbP+0BCr1K3hApScx9nBbc
+            | GbDEw3B1gOjR8Ja5VD0XbGzZHgane1Ld1q+iRYgmHLlRi66Gy0Eq6bL31CCTeKMn
+            | zjHv6zNLEw2aGdVxTCiJAvnTvobV3uhpXTE8atOVAX7MLjk2/Yq5J21nNArrfkpx
+            | BFdUfrXAixrIAJ4ZcOC/OT5Nv5OeovixzVyDtRrNTH31z+ElNbvKStofZRp1UTlw
+            | L7kBDQRYmhPiAQgA6KLLRp5XVr48BA1prhJ7dCj+ml5Ca/wv1yP/Mguh2aw/iI69
+            | 7H0UA9F+Nt5pQGBgUY7mjm0YtpMxWbQvcL0kmOvAzmqe+8CIqAuKBz++duKLCacb
+            | R/EP3x/dnV45baTWw0xWrslNhodIImKtvjj/Exa58ROZ3zd8Saer4Hh6jNzNtIl8
+            | 3YIHJtzibfpROXe8JLKSO+AfKDZMM9BTqitp6qxcAqq7boNQK95Ai4QP9LBuaud2
+            | bw2uCP24vLA3pjRGALinWjsxn52UZ3wDKMIDWAITXEfYCx4B/aunlkXT1mCuUZMF
+            | sRsBlTfjxwrwyHc1tLNBGjLZTgUakazFndYa6wARAQABiQEfBBgBCAAJBQJYmhPi
+            | AhsMAAoJEJXjO2sb9xhXPvQH/2mi2zWrI9pqQXXh74q0uG/cckskkzr079eyxMHi
+            | qWr+2lUkpEeQRT0bN1tmHRbTgCSBxn44WdSa/wY2+G0JmZJn7mDPMOL1QvsOSlK1
+            | g5s1Cn9y34tkD92/sYVbL0SS+uCWPrEOR2FQrbZN+X6DUNXBH19/osYIzfZwV/OK
+            | c0A5cuqDCS964FoDRCBgsQV0hnb2sp8vhPtd8uKCfptm/afCJOvzuShjnxgPfSDp
+            | v2OuzekmhSZMJkpB3ZIMRARmuR7jbc8tKav/+V5f5vyX3r2J90PMGuIPW5h8nOSo
+            | kQcPf5P470oVquvrgS8qYU1QsajNW7CK+KmaRWCHw3ohs88=
+            | =tNMV
+            | -----END PGP PUBLIC KEY BLOCK-----
+
+script(src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js")
+script.
+
+    hljs.initHighlightingOnLoad();
+// Created by burnaDLX on 07.02.2017.
+

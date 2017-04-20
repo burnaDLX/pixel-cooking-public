@@ -1,0 +1,38 @@
+.scrollup-btn
+	display: none
+	position: fixed
+	bottom: 20px
+	right: 20px
+	cursor: pointer
+	background-color: $dark-blue
+	border: 2px solid $neon-green
+	@each $device in $device-list
+		$i: index($device-list, $device)
+		@media #{$device}
+			$i: ($i + 35) *1.3
+			+size(#{ $i + 'px'}, #{ $i + 'px'})
+			// prevents that the scrollup btn covers
+			// the impressum button on small devices
+			@if $device == $small-phone
+				bottom: 40px
+				right: 20px
+
+	.scrollup-icon
+		@extend %center
+		transform: translate(-50%, -56%) !important //override offset -50%-6%
+		+font-size(1.5)
+		color: $neon-green
+		user-select: none
+
+
+// hover effect for non touch devices
+html.no-touch
+	.scrollup-btn
+		transition: background-color .25s ease
+		&:hover
+			transition: background-color .25s ease
+			background-color: $neon-green
+			border: 2px solid $neon-green
+		&:hover > .scrollup-icon
+			color: $dark-blue
+

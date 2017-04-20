@@ -1,0 +1,45 @@
+html,
+body
+	margin: 0
+	padding: 0
+	height: 100%
+	main
+		min-height: 100%
+		//min-height: calc(100% - 80px)
+		position: relative
+		.page-wrapper
+			padding-bottom: 40px
+		.footer
+			position: absolute
+			bottom: 5px
+			left: 50%
+			text-align: center
+			transform: translateX(-50%)
+			// width: 100%
+			// min-width: 300px
+			// max-width: 530px
+			// border: 1px solid white
+			.info, .pxc-modal-trigger
+				position: relative
+				//position: absolute
+				//bottom: 0
+				display: inline
+				color: $white
+				height: 100%
+				//+text-elements(1, 1.1, 1.1, 1.2, 1.2) //11.04.17
+				+text-elements(1.5, 1.5, 1.5, 1.6, 1.6)
+				padding: 5px
+			.info
+				//left: 10px
+				// margin-right: 10px
+			.pxc-modal-trigger
+				//right: 10px
+				// margin-left: 10px
+				// remove button alike styles
+				background-color: transparent
+				border: none
+				outline: none
+				&:first-of-type
+					margin:  0 10px
+				&:hover
+					color: $neon-green

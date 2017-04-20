@@ -1,0 +1,37 @@
+body
+  //$gradient: to left, $dark-blue, $dark-blue
+  $gradient: to left, $dark-blue-transparent, $dark-blue-transparent
+  $originalUrl: "/images/background/original/background.jpg"
+  $sUrl: "/images/background/s/background-s.jpg"
+  $mUrl: "/images/background/m/background-m.jpg"
+  $lUrl: "/images/background/l/background-l.jpg"
+  $xlUrl: "/images/background/xl/background-xl.jpg"
+
+
+  background: $dark-blue // fallback
+  &:before
+    content: ""
+    display: block
+    position: fixed
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    z-index: -10
+    background-size: cover
+    animation: fade-in 0.4s $easeInSine
+    @media #{$small-phone}
+      background: linear-gradient($gradient), url(#{$sUrl}) scroll right top no-repeat
+      background-size: 150%
+    @media #{$big-phone}
+      background: linear-gradient($gradient), url(#{$mUrl}) scroll right top no-repeat
+    @media #{$tablet}
+      background: linear-gradient($gradient), url(#{$lUrl}) scroll right top no-repeat
+    @media #{$laptop}
+      background: linear-gradient($gradient), url(#{$xlUrl}) scroll left top no-repeat
+      background-size: 120%
+    @media #{$desktop}
+      background: linear-gradient($gradient), url($originalUrl) scroll left top no-repeat
+      background-size: 150%
+    @media (min-width: $media-xl) and (orientation: portrait)
+      background-size: cover

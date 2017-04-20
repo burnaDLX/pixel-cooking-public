@@ -1,0 +1,571 @@
+//============================================================
+// Structure
+//============================================================
+
+html
+  box-sizing: border-box
+  font-size: 62.5%
+
+*
+  letter-spacing: 0
+  padding: 0
+  margin: 0
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  box-sizing: inherit
+  &::after, &::before
+    box-sizing: inherit
+
+//============================================================
+// Style Helper
+//============================================================
+
+%center
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+=size($w, $h)
+  width: $w
+  height: $h
+
+
+//============================================================
+// Utility Classes
+//============================================================
+
+.hide
+  display: none !important
+
+.left-align
+  text-align: left
+
+.right-align
+  text-align: right
+
+.center, .center-align
+  text-align: center
+
+.left
+  float: left !important
+
+.right
+  float: right !important
+
+.no-select
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.circle
+  border-radius: 50%
+
+.center-block
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.no-space
+  margin: 0 !important
+  padding: 0 !important
+
+.space-1
+  padding: 1em
+.space-1-2
+  padding: 1.5em  
+.space-2
+  padding: 2em
+.space-2-3
+  padding: 2.5em
+.space-3
+  padding: 3em
+.space-left
+  padding-left: 15px
+.space-right
+  padding-right: 15px
+.space-bottom
+  padding-bottom: 15px
+
+//============================================================
+// Colors
+//============================================================
+
+// colors
+$light-blue-light: #5d6f8f
+$light-blue: #354C74
+$light-blue-dark: #2a3c5c
+
+$dark-blue-light: rgba(3, 32, 82, 0.7)
+$dark-blue: #032052
+$dark-blue-transparent: rgba(3, 32, 82, 0.9)
+
+$dark-blue-full: rgb(3, 32, 82)
+
+$neon-green: #33e512
+$blue-grey: #c2c9d5
+$blue-grey-light: #e0e4ea
+$blue-grey-dark: #C8CED9
+$blue-grey-darker: #212121
+$white: #ecf0f1
+$white-90: rgba(236, 240, 241, 0.95)
+
+// background color classes
+.bg-db
+  background-color: $dark-blue-full !important
+.bg-ng
+  background-color: $neon-green !important
+.bg-w
+  background-color: $white !important
+
+// font color classes
+.text-db
+  color: $dark-blue-full !important
+.text-ng
+  color: $neon-green !important
+.text-w
+  color: $white !important
+
+
+//============================================================
+// Media Queries
+//============================================================
+
+// pureCSS breakpoints
+$media-xl: 80em // 1280px
+$media-l: 64em // 1024px
+$media-m: 48em // 768px
+$media-s: 35.5em // 568px
+
+$small-phone: "screen and (max-width: #{$media-s - 0.01em})"
+$big-phone: "screen and (min-width: #{$media-s}) and (max-width: #{$media-m - 0.01em})"
+$tablet: "screen and (min-width: #{$media-m}) and (max-width: #{$media-l - 0.01em})"
+$laptop: "screen and (min-width: #{$media-l}) and (max-width: #{$media-xl - 0.01em})"
+$desktop: "screen and (min-width: #{$media-xl})"
+
+/* How to Use
+  @media #{$tablet}
+    p
+      font-size: 18px
+  @media #{$desktop}
+    p
+      font-size: 20px
+
+
+//============================================================
+// Fonts
+//============================================================
+
+
+
+// An em font-size mixin providing fallback to px
+=font-size($sizeValue: 1.6)
+  $remValue: $sizeValue
+  $pxValue: $sizeValue * 10
+
+  font-size: #{$remValue}rem
+  font-size: #{$pxValue}px
+
+=text-elements($xs, $s, $m, $l, $xl)
+  @media #{$small-phone}
+    +font-size($xs)
+  @media #{$big-phone}
+  +font-size($s)
+  @media #{$tablet}
+    +font-size($m)    
+  @media #{$laptop}
+    +font-size($l)        
+  @media #{$desktop}
+    +font-size($xl)
+
+// Requires inline-block or block for proper styling
+=text-truncate
+  overflow: hidden
+  text-overflow: ellipsis
+  $white-space: nowrap
+
+
+// loaded via store-fonts.js
+
+// set fonts
+$text-font: 'Lato', "Segoe UI", "Trebuchet MS", sans-serif
+$head-font: 'Adamina', Georgia, serif
+// default families
+
+
+// picked fallback fonts based on cssfontstack.com
+// with other font-sizes to minimalize font-differences
+// between fallback and default font
+h1, h2, h3, h4, h5, h6, h1 span, h2 span, h3 span
+  font-family: Georgia, serif
+h1
+  +text-elements(12, 14, 16, 18, 20) // 10.04. reset done
+h2
+  +text-elements(5.2, 7.2, 9, 10, 12) // 10.04. reset done
+h3
+  +text-elements(4.4, 5.5, 6.7, 7.5, 8.5) // 10.04. reset done
+
+a, a span,
+p, p span,
+input[type="mail"],
+input[type="text"],
+textarea
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif
+  +text-elements(1.8, 1.9, 2.1, 2.3, 2.5) // 10.04. reset done
+
+
+// default font
+
+// font-loaded is setted by store-fonts.js
+
+.fonts-loaded
+  h1, h2,  h3,  h4,  h5,  h6, h1 span, h2 span, h3 span
+    font-family: $head-font
+  h1
+    +text-elements(10, 12, 14, 16, 18) // 10.04. reset done
+  h2
+    +text-elements(4.4, 6.5, 8, 9, 11) // 10.04. reset done
+  h3
+    +text-elements(3.8, 4.8, 6, 6.8, 7.5) // 10.04. reset done
+  a, a span,
+  p, p span,
+  input[type="mail"],
+  input[type="text"],
+  textarea
+    font-family: $text-font
+
+
+//============================================================
+// TYPOGRAPHY
+//============================================================
+
+
+.light
+  font-weight: 300 !important
+.normal
+  font-weight: 400
+.bold
+  font-weight: 700
+.italic
+  font-style: italic
+.uppercase
+  text-transform: uppercase
+.block-text
+  text-align: justify
+.l-space-1
+  letter-spacing: 1px
+.l-space-2
+  letter-spacing: 2px
+.l-space-3
+  letter-spacing: 3px
+.multiple-col  
+  @media #{$desktop}
+    column-count: 2
+    column-gap: 35px 
+
+// use in combination wiht '&shy;' and '<wbr>' in markup
+// think if you really need justified text
+.hyphenate
+  word-break: break-word
+  -webkit-hyphens: auto
+  -moz-hyphens: auto
+  hyphens: auto
+
+
+h1, h2, h3, h4, h5, h6
+  color: $white
+  font-weight: 400
+
+p,
+input[type="mail"],
+input[type="text"],
+textarea
+  // font-family: sans-serif //$text-font
+  color: $white
+  line-height: 1.5
+  font-weight: 400
+
+a
+  color: $neon-green
+  text-decoration: none
+  // don't show dotted outline after click
+  -webkit-tap-highlight-color: transparent
+  outline: 0
+  &:active, &:focus
+    outline: 0
+
+
+
+// //============================================================
+// // Animations
+// //============================================================
+
+
+//============================================================
+//
+// Easing
+//
+// Thanks to Robert Penner for his sterling work on easing,
+// and to Matthew Lein for converting these functions into
+// approximated cubic-bezier functions. Respect.
+//
+// @see http://robertpenner.com/
+// @see http://matthewlein.com/ceaser/
+//
+//============================================================
+
+=animations($animation, $direction:"")
+  -webkit-backface-visibility: hidden
+  -webkit-perspective: 1000
+  animation: $animation
+  animation-timing-function: $cubicBezier
+  animation-direction: #{$direction}
+
+// Cubic
+$easeInCubic: cubic-bezier(0.55, 0.055, 0.675, 0.19)
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1)
+$easeInOutCubic: cubic-bezier(0.645, 0.045, 0.355, 1)
+
+// Circ
+$easeInCirc: cubic-bezier(0.6, 0.04, 0.98, 0.335)
+$easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1)
+$easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86)
+
+// Expo
+$easeInExpo: cubic-bezier(0.95, 0.05, 0.795, 0.035)
+$easeOutExpo: cubic-bezier(0.19, 1, 0.22, 1)
+$easeInOutExpo: cubic-bezier(1, 0, 0, 1)
+
+// Quad
+$easeInQuad: cubic-bezier(0.55, 0.085, 0.68, 0.53)
+$easeOutQuad: cubic-bezier(0.25, 0.46, 0.45, 0.94)
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955)
+
+// Quart
+$easeInQuart: cubic-bezier(0.895, 0.03, 0.685, 0.22)
+$easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1)
+$easeInOutQuart: cubic-bezier(0.77, 0, 0.175, 1)
+
+// Quint
+$easeInQuint: cubic-bezier(0.755, 0.05, 0.855, 0.06)
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1)
+$easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1)
+
+// Sine
+$easeInSine: cubic-bezier(0.47, 0, 0.745, 0.715)
+$easeOutSine: cubic-bezier(0.39, 0.575, 0.565, 1)
+$easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95)
+
+// Back
+$easeInBack: cubic-bezier(0.6, -0.28, 0.735, 0.045)
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.32, 1.275)
+$easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+
+// Bezier
+$cubicBezier: cubic-bezier(.7, -0.3, .3, 1) //11.04.17
+
+
+// animations
+
+@keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@keyframes fade-out
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+// animation classes
+
+.fade-in
+  animation: fade-in .25s !important
+.fade-out
+  animation: fade-out .25s !important
+
+
+
+// durations
+
+.ani-500
+  animation-duration: .5s
+.ani-750
+  animation-duration: .75s
+
+.page-wrapper
+  margin: auto
+
+// Global fade-in Setting on non touch devices
+html.no-touch
+  body
+    .page-wrapper
+      animation: fade-in .75s ease-out
+      @media (max-width: #{$media-l} )
+        &:not(.no-fade-in)
+          animation: fade-in .75s ease-out
+
+
+
+// wildcard rule to force hidden elements used
+// by the aos plugin being visible on print
+@media print
+  *[data-aos*=""]
+    display: inline-block !important
+
+
+//============================================================
+// common elements used on multiple sides
+//============================================================
+
+$device-list: $small-phone $big-phone $tablet $laptop $desktop
+
+.container
+  @each $device in $device-list
+    $p-top: index($device-list, $device)
+    $width: index($device-list, $device)
+    @media #{$device}
+      $p-top: $p-top*10 + 40 //   50-90px
+      width: #{92 - $width*5 + '%'}
+      max-width: 960px
+      margin: 0 auto 0 auto
+      padding-top: #{$p-top}px
+
+h2
+  @each $device in $device-list
+    $i: index($device-list, $device)
+    @media #{$device}
+      $i: $i + 4 // 5-9px
+      border-bottom: #{ $i + 'px'} solid $neon-green
+      @if $device == $small-phone or $device == $big-phone
+        display: block
+        // text-align: center
+        padding-top: 20px
+      @else 
+        display: inline
+
+  // used with paragraph before and after
+  // about me skillset and work timeline
+
+.section-intro
+  padding: 5px 0 15px
+
+// important to have fix height here. otherwise
+// the fade-in animation does not run smoothly
+.pxc-outro-wrapper
+  height: 330px !important
+  
+  .section-outro
+    text-align: center
+    +text-elements(0.7, 0.7, 0.8, 0.8, 0.9)
+
+  // big button with hover effect on non touch
+  // used on every page at the bottom
+
+  // common button styles
+  .pxc-btn-wrapper
+    text-align: center
+    &:hover
+      // read https://www.sitepoint.com/introduction-css-will-change-property/
+      // best use of will-change property to increase memory consumption only ad-hoc
+      will-change: transform, color, font-weight
+    .pxc-btn-l
+      transform: translateZ(0)
+      position: relative
+      background-color: transparent
+      border: 2px solid $neon-green
+      border-radius: 6px
+      +size(100%, 55px)
+      overflow: hidden
+      .btn-layer
+        z-index: -1
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background-color: $neon-green
+        transform: translateX(-100%)
+        transition: transform 0.3s ease-out
+      .btn-txt
+        @extend %center
+        font-weight: 400
+        font-family: $text-font
+        color: $neon-green
+        +text-elements(1.7, 1.7, 1.8, 1.8, 2)
+        transition: color 0.4s ease-in, font-weight 0.3s ease-in
+
+
+  // size specific styles
+  .pxc-btn-wrapper
+    .pxc-btn-l
+      @each $device in $device-list
+        $p-top: index($device-list, $device)
+        @media #{$device}
+          $p-top: #{  $p-top*8 + 10 + "px" }
+          margin-top: $p-top
+          @if $device == $small-phone
+            width: 100%
+            min-width: 250px
+          @elseif $device == $big-phone
+            width: 80%
+          @else 
+            +size(250px, 65px)
+            max-width: 250px
+
+
+
+
+// hover states for non-touch devices
+
+html.no-touch
+  .pxc-btn-wrapper
+    .pxc-btn-l
+      &:hover
+        .btn-txt
+          font-weight: 600
+          color: $dark-blue
+          transition: color 0.3s ease-in, font-weight 0.2s ease-in
+        .btn-layer
+          transform: translateX(0)
+          transition: transform 0.2s ease-out
+
+
+.pxc-small-btn
+  display: inline-block
+  margin-top: 20px
+  margin-left: 5px
+  +text-elements(1.2, 1.2, 1.3, 1.3, 1.4)
+  letter-spacing: -0.2px
+  padding: 9px 14px
+  background-color: $dark-blue-full
+  color: $neon-green
+  border-radius: 4px
+  cursor: pointer
+  transition: background-color .25 ease
+
+// hover states for non-touch devices
+html.no-touch
+  .pxc-small-btn
+    &:hover
+      transition: background-color .25 ease
+      background-color: $dark-blue-light
+
+
+
+
+
+// hover effect on textlinks
+html.no-touch
+  a.pxc-link-wrapper
+    span
+      transition: all 0.3s ease
+      &:hover
+        transition: all 0.3s ease
+        padding-bottom: 2px
+        border-bottom: 2px solid $neon-green

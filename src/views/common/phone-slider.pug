@@ -1,0 +1,31 @@
+.phone-container
+    
+    // phone container start
+    .phone-elements
+        .speaker
+        .camera
+        .home-button
+    
+    // Slider main container
+    .swiper-container
+
+        .swiper-fs-button.circle
+            .swiper-fs-icon
+                span
+                span
+        
+        .swiper-close-fs-button.circle
+            .swiper-cross
+            .swiper-cross
+
+        .swiper-wrapper
+            // Lazy image
+            - for (var i = 0; i < 5; i++)
+                .swiper-slide        
+                    img.swiper-lazy(data-src='/images/project-details/'+path+'/screenshots/Screenshot-0'+i+'.jpg', alt=title+' Screenshot '+i)
+                    .swiper-lazy-preloader.swiper-lazy-preloader-white
+
+    .slider-nav
+        .swiper-button-prev.swiper-button-white
+        .swiper-pagination
+        .swiper-button-next.swiper-button-white

@@ -1,0 +1,216 @@
+@import '../common/helper.sass'
+@import '../common/background.sass'
+@import '../common/breadcrumbs.sass'
+@import '../common/menu.sass'
+@import '../common/scrollup.sass'
+@import '../common/footer.sass'
+@import '../common/modal.sass'
+
+@keyframes fade-in
+	from
+		bottom: 0
+		opacity: 0
+	to
+		bottom: 20px
+		opacity: 1
+
+@keyframes fade-out
+	from
+		bottom: 20px
+		opacity: 1
+	to
+		bottom: 0
+		opacity: 0
+
+@keyframes fade-up
+  0%
+    transform: translateY(200px)
+    opacity: 0
+  100%
+    transform: translateY(0)
+    opacity: 1
+
+
+#toast
+	visibility: hidden
+	min-width: 250px
+	max-width: 550px
+	background-color: rgba(0, 0, 0, 0.8)
+	color: $white
+	text-align: center
+	border-radius: 6px
+	padding: 12px 16px
+	z-index: 10
+	position: fixed
+	left: 50%
+	bottom: 20px
+	letter-spacing: 1px
+	transform: translateX(-50%)
+	+font-size(1.8)
+	span
+		+font-size(1.8)
+		color: $neon-green
+ // 11.04.17
+#toast.fade-toast-in
+	visibility: visible
+	animation: fade-in 0.5s
+#toast.fade-toast-out
+	animation: fade-out 0.5s
+	
+.hidden
+	visibility: hidden
+
+
+
+
+body
+	.container
+		.form-container
+			position: relative
+			@each $device in $device-list
+				@media #{$device}
+					@if $device == $small-phone or $device == $big-phone
+						background-color: transparent
+
+			
+			.sent-mail-layer
+				display: none
+				position: absolute
+				top: 0
+				left: 0
+				+size(100%, 100%)
+				background-color: rgba(0, 0, 0, 0.4)
+				z-index: 10
+				border-radius: 6px
+				svg 
+					@extend %center
+					path,
+					rect
+				  		fill: $white
+
+			.pure-form
+				// info status font size thorugh devices
+				@each $device in $device-list
+					.info-wrapper
+						$f-size: index($device-list, $device)
+						@media #{$device}
+							$f-size: $f-size/10 + 1.8
+							margin-top: 0
+							#info-status // 11.04.17
+								+font-size($f-size) // 11.04.17
+							@if $device == $small-phone or $device == $big-phone
+								margin-bottom: 10px
+							#info-status
+						    	margin-top: 0
+
+				.input-wrapper
+					position: relative
+					textarea
+						resize: vertical
+					input[type="mail"],
+					input[type="text"],
+					textarea
+						padding: 20px 20px 10px 20px
+						margin: 0
+						//+font-size(1.4)
+						font-weight: 300
+						line-height: 1.5
+						color: $white
+						background-color: rgba(255, 255, 255, 0.1)
+						border: none
+						border-radius: 4px // override pure presets
+						outline: none // override pure presets
+						box-shadow: none // override pure presets
+						transition: background-color .2s ease-out
+						&:focus
+							background-color: rgba(255, 255, 255, 0.25)
+							transition: background-color .2s ease-out
+						&:focus + label.before
+							transition: all 0.25s ease-in
+							font-weight: 600
+							top: 0px
+							left: 10px
+
+					label
+						letter-spacing: 1px
+						color: $white
+						font-weight: 300
+						position: absolute
+						transition: all 0.25s ease-out
+					label.before
+						color: rgba(236, 240, 241, 0.8)
+						top: 8px
+						left: 15px
+					label.after
+						color: $white
+						//top: 0px  // 11.04.17
+						top: 3px
+						left: 10px
+						letter-spacing: 2px
+
+					// input font sizes thorugh devices
+					@each $device in $device-list
+						input[type="mail"],
+						input[type="text"],
+						textarea
+							$f-size: index($device-list, $device)
+							
+							@media #{$device}
+								$f-size: $f-size/10 + 1.4
+
+								+font-size($f-size)
+						
+					// label font sizes thorugh devices
+					@each $device in $device-list
+						$label-size: index($device-list, $device)
+						label
+							$label-size: $label-size/10 + 1.4
+							&.before
+								@media #{$device}
+									+font-size($label-size)
+							&.after
+								@media #{$device}
+									+font-size($label-size/2)
+
+
+					.pure-form-message-inline
+						color: $neon-green
+						+font-size(1.7)
+						height: 20px
+						margin: 5px 0 15px 0 
+						opacity: 0
+					
+
+				#captcha
+					margin: 0
+					width: calc(100% - 210px)
+					display: block // fixes behavior of error span element (if inline-block)
+				.captcha-image-wrapper
+					position: absolute
+					right: 0
+					//top: 8px // 11.04.17
+					top: 0px
+					+size(210px, 50px)
+					min-width: 210px
+					max-width: 210px
+					@media #{$small-phone}
+						transform: scale(0.85)
+					#reload-captcha
+						float: left
+						margin-left: 10px
+						cursor: pointer
+						margin-top: 5px
+					#captcha-image
+						float: right
+						svg
+							background-color: #fff
+							border-radius: 4px
+
+
+				.pxc-outro-wrapper
+					height: 200px !important
+					.pxc-btn-wrapper
+						transform: translateY(200px)
+						opacity: 0
+						// now handled with js to avoid bug on slow connection 
+						// animation: fade-up 0.6s 0.4s ease-out

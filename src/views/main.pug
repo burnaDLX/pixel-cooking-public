@@ -1,0 +1,49 @@
+doctype html
+html.no-js(lang="de")
+    head
+        include common/head.pug
+        title #{title}
+        meta(name='description', content="Hi, ich möchte gerne bei Ihnen meine Masterthesis schreiben. Ich interessiere mich für Frontend Entwicklung.")
+        link(rel="stylesheet", href="/stylesheets/pages/main.css")
+         
+    body
+        header
+            include common/menu.pug
+
+        main
+            .container
+                .pure-g.page-wrapper
+                    .pure-u-1
+                        h1
+                            span.main-headline Hi
+                    
+                    .space-1
+                    
+                    .pure-u-1.space-bottom
+                        p.bigger-text.bold.l-space-2 Schön, dass Sie da sind.
+                    
+                    .pure-u-1.space-bottom
+                        p.light Mein Name ist Florian und ich möchte gerne in Ihrem Unter&shy;nehmen meine Master&shy;thesis schreiben.
+                    
+                    .pure-u-1
+                        p.light Ich fühle mich als Ent&shy;wickler im Frontend zu Hause und mag es benutzer&shy;orientierte und performante Erlebnisse zu schaffen.
+            
+
+                    .pxc-outro-wrapper.pure-u-1.space-1
+
+                        .pxc-btn-wrapper
+                            a(href="/about-me.html").pure-button.pxc-btn-l
+                                span.btn-txt.uppercase.bold.l-space-2 Mehr Erfahren
+                                span.btn-layer
+
+
+                    include common/footer.pug
+
+        include common/modal.pug
+        include common/scrollup.pug
+        include common/scripts.pug
+                
+        script(async, src='/javascripts/pages/main.js')
+        script(src='/javascripts/common/store-fonts.js')
+        script(async src='/javascripts/common/animation-handler.js')
+        script(src='//localhost:35729/livereload.js')

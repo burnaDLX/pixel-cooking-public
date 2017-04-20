@@ -1,0 +1,194 @@
+@import '../common/helper.sass'
+@import '../common/background.sass'
+@import '../common/breadcrumbs.sass'
+@import '../common/menu.sass'
+@import '../common/scrollup.sass'
+@import '../common/footer.sass'
+@import '../common/modal.sass'
+@import '../common/detail-nav.sass'
+
+
+// basic mixin for portrait
+%ab-me-portrait
+	content: ""
+	position: absolute
+	top: 0
+	right: 0
+	bottom: 0
+	left: 0
+	opacity: 1
+	border-radius: 50%
+	background-size: 100% !important
+
+
+
+body
+
+	.container
+
+		.ab-headline-mobile
+			@media (min-width: #{$media-l + 0.01em} )
+				display: none
+						
+		.ab-me-wrapper
+			position: relative
+			@media (max-width: $media-l)
+				display: none
+
+			.ab-me-headline
+				display: inline-block !important
+				&:first-of-type
+					@media #{$laptop}
+						width: 263px
+						margin-right: 153px
+					@media #{$desktop}
+						width: 320px
+						margin-right: 190px
+			.ab-me-portrait
+				z-index: 10
+				position: absolute
+				top: 0
+				@media #{$laptop}
+					left: 270px
+				@media #{$desktop}
+					left: 330px
+				&:before 
+					@extend %ab-me-portrait
+					background: url("/images/about-me/portrait.jpg")
+								
+				@each $device in $device-list
+					$i: index($device-list, $device)
+					@media #{$device}
+						$i: $i*10 //   10-50px
+						//margin-top: #{- $i + 'px'}
+						border: #{ $i/10 +4 + 'px'} solid $white
+						+size(#{$i*3 + 20 + 'px'}, #{$i*3 + 20 + 'px'})
+						@if $device == $small-phone or $device == $big-phone
+							display: none
+						@else 
+							display: inline-block
+		.ab-section
+			@each $device in $device-list
+				$i: index($device-list, $device)
+				@media #{$device}
+					$i: $i*10 //   40-80px
+					padding-top: #{ $i + 'px'}
+			h3
+				border-bottom: none
+				margin-top: 15px
+				text-align: left
+				display: inline-block
+				@each $device in $device-list
+					$i: index($device-list, $device)
+					@media #{$device}
+						$i: $i + 2 // 3-7px
+						margin-bottom: #{ $i+10 + 'px'}
+
+				.ab-numbering
+					float: left
+					font-family: $text-font
+					background-color: rgba(255, 255, 255, 0.25)
+					margin-top: 5px
+					text-align: center
+					display: inline-block
+					border-radius: 50%
+					@each $device in $device-list
+						$i: index($device-list, $device)
+						@media #{$device}
+							$i: $i*20 + 20 // 3-7px
+							margin-right: #{ $i/5 + 'px'}
+							line-height: #{ $i + 'px'}
+							+size(#{ $i + 'px'}, #{ $i + 'px'})
+
+				.ab-underline
+					float: right
+					display: inline-block
+					@each $device in $device-list
+						$i: index($device-list, $device)
+						@media #{$device}
+							$i: $i + 2 // 3-7px
+							border-bottom: #{ $i + 'px'} solid $neon-green //$white   
+
+
+
+			.ab-download
+				display: block
+				&:before
+					font-weight: 600
+					content: "\203a" // >
+					color: $white
+					padding-right: 8px
+
+						
+		.pure-u-1#skillset
+			height: auto
+			.skill-meter
+				.skill
+					&:first-child
+						margin-top: 10px
+					.skill-title
+						//+text-elements(1.2, 1.3, 1.4, 1.5, 1.6) //10.04.17
+						+text-elements(1.7, 1.8, 1.9, 2, 2.1)
+						color: $white
+						font-family: $text-font
+						//margin-bottom: 10px //10.04.17
+						margin-bottom: 8px
+						+text-truncate
+						@media #{$small-phone}
+							margin-right: 55px
+					.skill-level
+						// height: 60px
+						height: 45px
+						background-color: transparent
+						border: 2px solid $white
+						position: relative
+						//border-radius: 6px
+						margin-bottom: 35px
+						@media #{$small-phone}
+							height: 35px
+							margin-bottom: 25px
+						@media #{$big-phone}
+							height: 40px
+							margin-bottom: 30px
+						.progress
+							margin: 0
+							position: absolute
+							top: 0
+							left: 0
+							height: 100%
+							background-color: $white
+						.progress-text
+							position: absolute
+							top: 50%
+							right: 8px
+							transform: translateY(-50%)
+							color: $white
+							//+text-elements(1, 1.1, 1.2, 1.3, 1.4) //10.04.17
+							+text-elements(1.4, 1.5, 1.6, 1.7, 1.8)
+							font-family: $text-font
+							@media #{$small-phone}
+								transform: translateY(-46px)							
+
+
+
+
+
+// on desktop secret hover effect on portrait
+// background-image fade with a little hack
+// read here >> http://stackoverflow.com/a/19818268/3605525
+html.no-touch
+	body
+		.container
+			.ab-me-wrapper
+				&:hover
+					will-change: background, opacity
+				.ab-me-portrait
+					cursor: pointer
+					&:before
+						z-index: 1
+						transition: opacity 0.4s ease-in
+					&:after 
+						@extend %ab-me-portrait
+						background: url("/images/about-me/younger-me.jpg")
+					&:hover:before 
+						opacity: 0

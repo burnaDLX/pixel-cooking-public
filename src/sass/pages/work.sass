@@ -1,0 +1,224 @@
+@import '../common/helper.sass'
+@import '../common/background.sass'
+@import '../common/breadcrumbs.sass'
+@import '../common/menu.sass'
+@import '../common/scrollup.sass'
+@import '../common/footer.sass'
+@import '../common/modal.sass'
+
+body
+    .header // only play slide animation on bigger devices
+        background: url(/images/work/header.png) left top no-repeat
+        background-size: 100%
+        @each $device in $device-list
+            $m-top: index($device-list, $device)
+            $height: index($device-list, $device)
+            $max-width: index($device-list, $device)
+            @media #{$device}
+                $m-top: $m-top*10 + 60 //   70-110px
+                $max-width: $max-width*140 + 300 // 520-1000pxpx
+                max-width: #{$max-width + 'px'}
+                height: #{$height*40 + 130 + 'px'}
+                margin-top: #{ $m-top + 'px'}
+                @if $device == $small-phone or $device == $big-phone
+                    width: 90%
+                    display: none !important
+                @else
+                    width: 100%
+
+    .container // only play slide animation on bigger devices
+        @each $device in $device-list
+            @media #{$device}
+                @if $device == $tablet or $device == $laptop or $device == $desktop
+                    animation: slide-from-bottom 0.8s $easeOutSine
+                    padding-top: 10px
+
+        .tl-container
+            position: relative
+            text-align: left
+            &::after
+                // clearfix
+                content: ''
+                display: table
+                clear: both
+            .tl-line
+                position: absolute
+                top: 40px
+                left: 20px
+                +size(0, 100%) // fallback if calculating height with js fails
+                border-left: 4px dashed rgba(255, 255, 255, 0.5)
+                @media only screen and (max-width: $media-s)
+                    display: none
+                @media only screen and (min-width: $media-l)
+                    // pos timeline desktop
+                    left: 50%
+                    transform: translateX(-50%)
+
+            // mobile view and basic settings
+            .tl-elements
+                // fix for AOS animtion to prevent
+                // displaying a scrollbar on fadeIn
+                overflow-y: hidden 
+                .tl-block
+                    position: relative
+                    width: calc(100% - 60px)
+                    margin-bottom: 75px
+                    @media only screen and (max-width: $media-s)
+                        width: calc(100% - 30px)
+                        margin-bottom: 20px
+                    .tl-icon-wrapper
+                        position: absolute
+                        top: 36px
+                        left: 2px
+                        +size(40px, 40px)
+                        background-color: $light-blue
+                        @media only screen and (max-width: $media-s)
+                            display: none
+                        .tl-icon
+                            @extend %center
+                            +size(24px, 24px)
+
+                        // education
+                        .tl-icon-0
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAilBMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gALGU/SAAAALXRSTlMA81RL37ZoUEjsv7uicm0tHujjyq+phoBgQj02Eg8LCPrT0cTBsJ2XiXl2Xlj8Y6gvAAAAm0lEQVQoz83OaRKDIAwF4CAIuFt3bdXue+5/vSLTOsj0AH4/M0neg5WQwckZwLatM1S8e2dOR+7izI92v+VwgwukbNW48/AfB9L4cWD2SRgnAJBgKoyMc0W/IWw/ckfGISpFRCnvQRsw7xGDp5BNQ2lUTP81jiUQVPKq9nEiQXPRBbuRJi5vWFZOYZYcccZaMIlbwAjJ/OsLVuADdU8diFX+XPoAAAAASUVORK5CYII=) top left no-repeat
+                        // pgp-bird
+                        .tl-icon-1
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAaVBMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gB/oAzyAAAAInRSTlMAmaa9sMGMie7e2M5yaE4U48mxkHpJLSgO5NSyoH9+WjoZSy1HOAAAAJxJREFUKM+dz1kOgzAMBFAnELZAwl66t3P/QxYRqzRR1A/ma+wnWTIdz6yw5jKF+xMAlQAwAZQoXysrwHp7g+K9lQqjBxmkK3fIAIQrDXoP8h1SD0YMrjxx+z0kK5Ryi0Yrhf3eCZIyqBA6hp7nuilcSRhS3hNNUTBEcxTahbooYKFzFDRR7sPVjcWQVTtE/9AMdQiCOA/hJbf0Jx+u8RtnZ2gNVgAAAABJRU5ErkJggg==) top left no-repeat
+                        // codepen
+                        .tl-icon-2
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAkFBMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gC6Y0L+AAAAL3RSTlMA+vPl6d63jhlmU047NvfVxaZ0LyAe7c68sJ+Jb0ITB+fY0tGGfWJJKiUPAtm+W6fKGJwAAAEJSURBVCjPjZBtV4JQEIR3LyDyjgKCb5SZmVnN//93DWt27NA5+XzZXe4Md/bKHUzLXSV/EIEcRp+bDnAKFNlIXqRtnk6A+a2c81rEh8gG2H+bbHhPWR/RiJxK4PkSZgmE1nmwMgfKykZ38UZXae/DsQCYTWnkPYqW0ocQGLy5C6Bx4hBUdQm8JB6KQAdHLglIJCR27DbSgT1Uao66FfLqATjKB9ir498PjDLpzyvuw25Z6HAAtFSnT1gE8GO6KMztwJ0sZch4b9b5liqjlBfb5lYSGpOrtGts1Sm3mAErGo1twPwiCzqOfIhP+eG8ZpR6r3VIeS+3ZB7gq0Jj+Y29kL3amHTnxfI/X2mLHkHoCoY5AAAAAElFTkSuQmCC) top left no-repeat
+                        // red-riding-hood
+                        .tl-icon-3
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAllBMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gDyg5fdAAAAMXRSTlMAqYjx4IHn2NKTkIwP+/aHceOzmnY8KiLbtq6gfGhZTxjrwsC9hF9BMi0ezMrHRzQCvCWfXgAAAOtJREFUKM+tkNdywyAURJEQAoR6s6JiuTtx6v7/zwVQIiUev9nngcvcM8vOQO7luRxu7lf5ga//b6bB3sBVSBbq5sNO2atBzs9WJPQR20zqBB1vmlKaFMXXpw/q6usLNHvZBz3R+PFxv3aBvCKFEIAuZ7VJeFmHeJQUjPBiS+GYXGuEHwAw2c0hoaf33YVuY2cW3fk8lqxMxlSdWJKsrFCYiaYzYlYUVOCKJy2yrEDKr0RuEnRoUwXP+UuqxSssVERLkzhqwRG4LlMAS9wf5NQBYtjhQmas8BDaD26D+ne/seWYBKniahGCPJBvTSsfRH758dcAAAAASUVORK5CYII=) top left no-repeat
+                        // virtual-jay
+                        .tl-icon-4
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAh1BMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gDidvyQAAAALHRSTlMA9L6s27qznIpKMtHKtZGCenVjRejUx8KUV1A5zaWXhmxoXj4tFA4E7+3gnzpQgG8AAADSSURBVCjPnZBHdsMwDEQlUiyiem+uSRynzP3PZz9CsiUuvPDfYT6BR8B7n6GPoliHbjwGIOLPTa7x5LTKc6wZHvkXtlwWwaj2WxD9nE9UpmYynF7M4sNW/BpBfMcA9ph/drCi4jgjK6GGIptIKCvCPQpkx7osGq3Xo+R9jLzULWv6nT9aYWBRZjQthBT/IgmoJQERwc+rpFOSMXfBPAizTnU8cU+ig/T0+4O/2ps5guCpT2f2FsKGdk6BlSB1YEwU5SJcrg/hQi1nKjZUfCcr7wU3tzUnoERlM4AAAAAASUVORK5CYII=) top left no-repeat
+                        // relaunch
+                        .tl-icon-5
+                            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAe1BMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gA1fBJqAAAAKHRSTlMA7uVYPS/66d/MxZ6HhHhyNgSuoW9fTCMXDff29dbTvr22mZZlRSogW/MZDQAAAKJJREFUKM+NkIcKwjAUANNd7d6te3v//4XGovDaBvQgEO4ISZ76h2Np9hFcTN5B4xiChWYzLHzGSGI4sGtuFnYx8x6+27bdlvssxAQKVEi9fGvz7B2f6yyUQJwA51lY8SGc3D5o/2XfiXBCsBYBiS9CgESEtfSryfegCsCqgEgEdxy45+nddI5FnassVe/lpb2aYqOxpZEPOBjCI7fD3FU/eQE23xfi9BKvXwAAAABJRU5ErkJggg==) top left no-repeat
+
+
+                    .tl-content
+                        background-color: $light-blue
+                        margin-top: 18px
+                        position: relative
+                        margin-left: 60px
+                        border-radius: 6px
+                        +size(calc(100%), auto)
+                        display: inline-block
+                        padding: 10px 30px 20px 30px
+                        
+                        @media only screen and (max-width: $media-s)
+                            margin-left: 15px
+                            padding: 16px 20px 20px 20px
+                        
+                        @media only screen and (min-width: $media-l )
+                            +size(calc(50% - 75px), auto)
+                            padding: 10px 16px 16px 16px
+
+                        @media only screen and (min-width: $media-s + 0.01)
+                            &::before
+                                content: ''
+                                position: absolute
+                                top: 24px
+                                right: 100%
+                                height: 0
+                                width: 0
+                                border: 15px solid transparent
+                                border-right: 15px solid $light-blue
+
+                        .tl-headline
+                            font-family: $text-font
+                            text-align: left
+                            padding-top: 0px
+                            padding: 10px 0
+                            color: $white //$blue-grey-dark
+                            //+text-elements(1.3, 1.3, 1.4, 1.4, 1.4) //10.04.17
+                            +text-elements(2, 2, 2.2, 2.2, 2.2) //10.04.17
+                            @media screen and (min-width: $media-l)
+                                padding-top: 0px
+                                &:nth-child(even)
+                                    text-align: right
+
+
+                        .tl-wrapper
+                            display: table
+                            padding-bottom: 15px
+                            .tl-description
+                                // text-align: left !important
+                                display: inline-block
+                                +text-elements(1.7, 1.7, 1.8, 1.8, 1.8)
+                                color: $blue-grey
+                                margin-bottom: 20px !important
+                                letter-spacing: 0.1px
+                                .tl-subheadline
+                                    font-size: inherit
+                                    color: $blue-grey-light
+                            
+                            
+                        .tl-date
+                            font-family: $text-font
+                            //+text-elements(0.9, 1, 1, 1.1, 1.1) //10.04.17
+                            +text-elements(1.4, 1.5, 1.5, 1.7, 1.7)
+                            @each $device in $device-list
+                                @media #{$device}
+                                    @if $device == $laptop or $device == $desktop
+                                        color: $white
+                                    @else
+                                        padding-top: 27px
+                                        color: $blue-grey
+                                        font-style: italic
+
+
+
+            // desktop view
+            .tl-elements
+                overflow-x: hidden
+                .tl-block
+                    @media only screen and (min-width: $media-l)
+                        width: 100%
+                        &:nth-child(odd)
+                            transform: translateX(calc(50% + 42px))
+                            //.tl-icon
+                                //left: -62px
+                            .tl-icon-wrapper
+                                left: -62px
+                            .tl-content::before
+                                right: calc(100% - 1px) // -1px to fix a minigap on chrome
+                                border-right: 15px solid $light-blue
+                            .tl-date
+                                left: -410px
+                                text-align: right
+                        &:nth-child(even)
+                            transform: translateX(33px)
+                            .tl-icon-wrapper
+                                left: calc(50% - 52px)
+                            // .tl-icon
+                            //     left: calc(50% - 52px)
+                            .tl-content::before
+                                left: calc(100% - 1px) // -1px to fix a minigap on chrome
+                                border-left: 15px solid $light-blue
+                            .tl-date
+                                right: -410px
+                                text-align: left
+
+                        .tl-date
+                            padding-top: 2px
+                            position: absolute
+                            width: 320px
+                            top: 24px
+                        .tl-icon-wrapper
+                            top: 18px
+                        //.tl-icon
+                            //top: 18px
+                        .tl-content
+                            margin: 0
+                            &::before
+                                content: ''
+                                position: absolute
+                                top: 24px
+                                height: 0
+                                width: 0
+                                border: 15px solid transparent
+
+

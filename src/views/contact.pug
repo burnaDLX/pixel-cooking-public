@@ -1,0 +1,86 @@
+doctype html
+html.no-js(lang="de")
+    head
+        include common/head.pug
+        meta(name='description', content="Auf dieser Seite können Sie mit mir in Kontakt treten.")
+        title  #{title}
+        link(rel="stylesheet", href="stylesheets/pages/contact.css")
+
+    body
+        header
+            include common/menu.pug
+
+        main
+
+            .container
+                .pure-g.page-wrapper
+                    
+                    .pure-u-1
+                        h2 #{title}
+
+                    include common/breadcrumbs.pug
+                    
+                    .space-1
+
+                    .pure-u-1
+                        p.bigger-text
+                            | Sie sind überzeugt von meiner bisherigen Arbeit und sehen Potenzial? Sie planen ein Projekt, dass gut zu einer Abschluss&shy;arbeit passen würde und hätten mich gern an Bord oder wollen einfach nur Hallo sagen?
+
+                    .space-1
+
+                    .section-intro.pure-u-1.space-1
+                        p.italic.light.l-space-1 Dann schreiben Sie mir doch an 
+                            a(href="mailto:application@pixel.cooking") application@pixel.cooking 
+                            | oder hier:
+
+                    .pure-u-1.form-container
+
+                        form.pure-form.pure-g
+
+                            // status
+                            p#toast
+
+
+                            // loader
+                            .sent-mail-layer
+                                svg(version='1.1', xmlns='http://www.w3.org/2000/svg', xmlns:xlink='http://www.w3.org/1999/xlink', x='0px', y='0px', width='80px', height='80px', viewbox='0 0 50 50', style='enable-background:new 0 0 50 50;', xml:space='preserve')
+                                    path(fill='#000', d='M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z')
+                                        animatetransform(attributetype='xml', attributename='transform', type='rotate', from='0 25 25', to='360 25 25', dur='1s', repeatcount='indefinite')
+
+                            .pure-u-1.input-wrapper.info-wrapper
+                                span#info-status.pure-form-message-inline
+
+                            .pure-u-1.input-wrapper
+                                input#email.pxc-input.pure-input-1(type='mail')
+                                label(for='email').before Email-Addresse
+                                span#err-mail.pure-form-message-inline
+
+                            .pure-u-1.input-wrapper
+                                textarea#content.pxc-input.pure-input-1(rows='6', cols='40')
+                                label(for='content').before Deine Nachricht
+                                span#err-content.pure-form-message-inline
+
+                            .pure-u-1.input-wrapper
+                                input#captcha.pxc-input.pure-input-1(type='text')
+                                label(for='captcha').before Captcha
+                                span#err-captcha.pure-form-message-inline
+                                .captcha-image-wrapper
+                                    img#reload-captcha(src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAADqElEQVRYhe1YTWgTQRRuN39irNrWg5ZCwIJaCLk2vUguRvEHm0PRS6EnKbJX0UOLC2LBeizUempyaEoPgj2IUmgitRCrBIyKDZYeeuipSS7S2JrE8XvJbtxOdtPdbAoe/GAg7Lx58+W9mfczLS0m0NnZKQwODl6YnJwUY7FYlDGWwshhFOVBv1M0B5m7kD3ncrkEI7odDoctEolIhoi0t7c7x8bGbudyuRVsuMeMY3dra+st1oagw66nXxCE1nA4LEG+VJeI0+lslSTpcjab/WqChCag44Moiv3QuW8Pu90uyGR+k5wuma6uLncqlXoGmYJVMir8nJ+ffwjdZWvZbDZhZmambBlFQJNMMBg8A1OvHPSnNzc3Y4lEYhpjHOMRxhS+LWEuU2/h2trarMfjcStuUs9pktnZ2Unp6NqD1V6Ojo5e7e3tPYYD28qvp2+Ya4PMDfypN0zHwvl8/htPpoYQuUnPMtvb24mRkZE++LyGhB5IFsQuYW26nsU0CdEBls8MjxKu8ZOenh6XUSI8vF7vyY2NjTlThOg2sVrzlpaXl++73W7DVtEDdDhgqaQhQhRncC2/8JNkmWaQUYKeYQtR0OMn6MxYcZMCddAzRIjSgRyB1dijA2yVDB/0DBGi3MS4dEBX28xt0oJW0DNEiBIl/5HijFUyZty0j5CctdXIUtBrlAy5qRHLVAmxSglRBaUDrQhsFMPDw1fi8fhSvEEQoZyaEOWmRsk0BaxSWKkJjf8nxBH651zW1ENtGc2+9pZxGIHRCAYGBgISB7/f71FSx66aEFLHgtXUUQ8dHR32TCbzUb1nsVjMwTOnDjW56gEeuMm4SJ5MJqNVAZ3y4z3KjyPNJuPz+U6USqXv3HaloaGh/qpQnQJtohkFmgLosq2urob5fdbX119TQt4njDMVxNwvnjlK2AdNKmEF6HrKuNqoUCj8CIVC3poFcpE/xbNnlSJ/wor7sPYodEzzZAjRaPSe7kK5DXqnQap8pnDQ/WbbIKy5iLWftHSiYZxTulhdoFE8jUZRUwGrNIoLuCXXqBk8qFGE7CuNY1BGOp1e7O7ubjP0z4iUnqVUyCHNxJH7nsut9GPKg/SNcflRwzIvQOa4UUuXIT82TOn9wwZBjw0SdDtMkVEgP8cEERI+W2UCHQlRFPv455iGID9Y3UJEJzfuHrj7X+Th+kWsvQ4dNutMOMhPeufpuQ7XeBYb0uHPskoLTq0UPcMkMReBzJ1AIHDWbCnzB5Sw/x4hz2PFAAAAAElFTkSuQmCC", width="36", height="36")
+                                    #captcha-image
+
+                            .pxc-outro-wrapper.pure-u-1.space-1
+                                .pxc-btn-wrapper
+                                    #send-email(type='submit').pure-button.pxc-btn-l
+                                        span.btn-txt.uppercase.bold.l-space-2 Absenden
+                                        span.btn-layer
+                                
+                    include common/footer.pug
+
+        include common/modal.pug
+        include common/scrollup.pug
+        include common/scripts.pug
+        
+        script(async src='/javascripts/pages/contact.js')
+        script(async src='/javascripts/common/animation-handler.js')
+        script(src='/javascripts/common/store-fonts.js')
+        script(src='//localhost:35729/livereload.js')

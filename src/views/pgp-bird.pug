@@ -1,0 +1,56 @@
+doctype html
+html.no-js(lang="de")
+    head
+        include common/head.pug
+        title #{title}
+        meta(name='description', content="Auf dieser Seite erfahren Sie etwas über mein aktuelles App-Projekt.")
+        link(rel="stylesheet", href="/resources/swiper/css/swiper.css")
+        link(rel="stylesheet", href="/stylesheets/pages/projects/pgp-bird.css")
+
+
+    body
+        header
+            include common/menu.pug
+
+        main
+
+            .container
+                .pure-g.page-wrapper
+                    
+                    section.pure-u-1#introduction
+                        .pure-g
+                            .pure-u-1
+                                h2: span #{title}
+
+                            include common/breadcrumbs.pug
+
+                            .space-1
+
+                            .pure-u-1
+                                p Mein aktuelles App-Projekt verfolgt das Ziel PGP-Verschlüsselung für jedermann und alle Messenger benutzbar zu machen.
+                            .space-1
+
+                            .pure-u-1
+                                .slider: include common/phone-slider.pug
+
+                                p.light#fade-out-header Die App bietet dem User eine effektive und einfach zu handhabende Ver- und Entschlüsselung von Textnachrichten und Bildern nach dem transparenten OpenPGP-Standard. Daneben bietet sie Funktionen zum bequemen Erstellen und sicheren Verwalten von Kontakten oder eigenen Identitäten. Neben diesen bereits entwickelten Basisfunktionen sind noch weitere Features in Planung.
+                            .space-1
+
+                    .pxc-outro-wrapper.pure-u-1.space-1
+                        .pxc-btn-wrapper(data-aos='fade-up', data-aos-easing="ease-out-sine", data-aos-offset="50")
+                            //- a(href="/work.html#pgp-bird").pure-button.pxc-btn-l
+                            a(href="/work.html").pure-button.pxc-btn-l
+                                span.btn-txt.uppercase.bold.l-space-2 Zurück
+                                span.btn-layer
+
+                    include common/footer.pug
+
+        include common/modal.pug
+        include common/scrollup.pug
+        include common/scripts.pug
+        
+        script(src="/resources/swiper/js/swiper.jquery.js")
+        script(src='/javascripts/common/phone-slider.js')
+        script(async, src='/javascripts/pages/projects/pgp-bird.js')
+        script(src='/javascripts/common/store-fonts.js')
+        script(src='//localhost:35729/livereload.js')

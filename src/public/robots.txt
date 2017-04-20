@@ -1,0 +1,13 @@
+# www.robotstxt.org/
+
+# Allow crawling of all content
+User-agent: *
+Disallow:
+
+
+# Where is the sitemap - link to https and http version
+# robots can access more than one sitemap file
+# read: https://www.sitemaps.org/protocol.html#informing
+
+Sitemap: http://pixel.cooking/sitemap-https.xml
+Sitemap: http://pixel.cooking/sitemap-http.xml

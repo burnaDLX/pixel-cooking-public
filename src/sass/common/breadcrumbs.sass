@@ -1,0 +1,32 @@
+body
+
+  .breadcrumbs
+    margin-top: 10px
+    padding: 10px 16px 10px 0
+    list-style: none
+    @media #{$small-phone}
+      display: none
+    li
+      display: inline  
+      + li:before
+        padding: 8px
+        +text-elements(1.7, 1.8, 1.8, 1.9, 2)
+        color: $white
+        content: "\00bb" // >>
+      a
+        color: $white
+        text-decoration: none
+        transition: color 0.25s ease
+        margin-left: 5px
+        +text-elements(1.7, 1.8, 1.8, 1.9, 2)
+        &:hover
+          color: $neon-green
+          transition: color 0.25s ease
+        &:first-of-type
+          margin-left: 0
+
+      .last-crumb
+        margin-left: 0px
+        padding: 2px 8px 4px 8px
+        border-radius: 4px
+        background-color: rgba(255, 255, 255, 0.25)

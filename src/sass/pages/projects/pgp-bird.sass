@@ -1,0 +1,41 @@
+@import '../../common/helper.sass'
+@import '../../common/background.sass'
+@import '../../common/breadcrumbs.sass'
+@import '../../common/menu.sass'
+@import '../../common/scrollup.sass'
+@import '../../common/footer.sass'
+@import '../../common/modal.sass'
+@import '../../common/phone-slider.sass'
+
+$originalUrl: "/images/project-details/pgp-bird/background-head/background-original.png"
+$sUrl: "/images/project-details/pgp-bird/background-head/background-s.png"
+$mUrl: "/images/project-details/pgp-bird/background-head/background-m.png"
+$lUrl: "/images/project-details/pgp-bird/background-head/background-l.png"
+$xlUrl: "/images/project-details/pgp-bird/background-head/background-xl.png"
+
+body
+
+	.container
+
+		// wrapper to fit phone-slider inline in text
+		.slider
+			float: left
+			//border: 1px solid black
+			@media #{$small-phone}
+				float: none
+				display: block
+				//text-align: center
+				margin: 20px auto
+				+size(299px, 650px)
+			@media #{$big-phone}
+				padding: 6px 0 0 6px
+				+size(292px, 592px) // 259 + 45 x 518 + 85
+			@media #{$tablet}
+				padding: 8px 0 0 8px
+				+size(333px, 666px) // 292 + 45 x 592 + 85
+			@media #{$laptop}
+				padding: 10px 0 0 10px
+				+size(370px, 740px) // 333 x 666
+			@media #{$desktop}
+				padding: 12px 0 0 12px
+				+size(415px, 825px) // 370 + 45 x 740 + 85

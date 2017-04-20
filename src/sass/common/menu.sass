@@ -1,0 +1,236 @@
+// used z-indexes: 1, 30, 35, 40, 50
+
+// --------------------------
+// animations
+// --------------------------
+
+
+@keyframes xAxisMainMobile
+	0%
+		transform: translateX(0)
+	100%
+		transform: translateX(-100%)
+
+@keyframes xAxisMainDesktop
+	0%
+		transform: translateX(0)
+	100%
+		transform: translateX(-300px)
+
+@keyframes xAxisMobile
+	0%
+		transform: translateX(100%)
+	100%
+		transform: translateX(0)
+
+@keyframes xAxisDesktop
+	0%
+		transform: translateX(300px)
+	100%
+		transform: translateX(0)
+
+@keyframes spin
+	0%
+		transform: scale(1, 1) rotate(0deg)
+	40%
+		transform: scale(1.3, 1.3) rotate(0deg)
+	100%
+		transform: scale(0, 0) rotate(-360deg)
+
+.animation-container-left //11.04.17
+	+animations(xAxisMainDesktop 0.4s)
+	@media #{$small-phone}
+		+animations(xAxisMainMobile 0.5s)
+.animation-container-right //11.04.17
+	+animations(xAxisMainDesktop 0.4s reverse)
+	@media #{$small-phone}
+		+animations(xAxisMainMobile 0.5s reverse)
+
+.animation-left
+	+animations(xAxisDesktop 0.4s)
+	@media #{$small-phone} //11.04.17
+		+animations(xAxisMobile 0.5s)
+
+
+.animation-right
+	+animations(xAxisDesktop 0.4s reverse)
+	@media #{$small-phone} //11.04.17
+		+animations(xAxisMobile 0.5s reverse)
+
+.animation-spin
+	+animations(spin 0.3s)
+	
+
+	
+// --------------------------
+// corpus
+// --------------------------
+body
+	// margin to adjust the difference
+	// through the burger bar on mobile
+	@media #{$small-phone}
+		margin-top: 70px
+	// nav-bar
+	.nav-wrapper
+		.nav-burger-bar
+			position: fixed
+			top: 0
+			left: 0
+			z-index: 30
+			+size(100%, 50px)
+			@media #{$small-phone}
+				background-color: $light-blue-dark
+		.nav-burger-icon
+			z-index: 40
+			cursor: pointer
+			position: fixed
+			@each $device in $device-list
+				$icon-padding: index($device-list, $device)
+				@media #{$device}
+					right: #{$icon-padding*2+4 }px
+					top: #{$icon-padding*2+4 }px
+
+			transform: translateY(0) rotate(0deg)
+			transition: transform .3s $cubicBezier
+			.nav-burger-line	
+				width: 35px
+				height: 35px
+				+size(35px, 5px)
+				background-color: $neon-green
+				margin: 6px 0
+		.nav-swipe-area
+			z-index: 1
+			position: fixed
+			top: 60px
+			right: 0
+			// to avoid overlapping with scrollup btn
+			+size(55px, calc(100% - 150px))
+			background-color: transparent !important
+		.nav-layer
+			z-index: 50
+			position: fixed
+			top: 0
+			right: 0
+			z-index: 30				
+			background-color: $light-blue-dark //$white-90
+			transform: translateX(300px)
+			@media #{$small-phone} //11.04.17
+				transform: translateX(100%)
+			+size(300px, 100%)
+			@media #{$small-phone} //11.04.17
+				+size(100%, 100%)
+
+
+			.nav-close-wrapper
+
+				// prevents overlapping border with close cross btn
+				@media #{$big-phone}
+					position: absolute
+					left: 0
+					right: 0
+					top: 0
+					height: 60px
+					background-color: $light-blue-dark
+					z-index: 50
+			
+				.nav-close
+					&:hover
+						// read https://www.sitepoint.com/introduction-css-will-change-property/
+						// best use of will-change property to increase memory consumption only ad-hoc
+						will-change: transform
+					opacity: 0
+					position: absolute
+					height: 48px
+					cursor: pointer
+					@each $device in $device-list
+						$icon-padding: index($device-list, $device)
+						@media #{$device}
+							right: #{$icon-padding*2+4 }px
+							top: #{$icon-padding*2+4 }px
+
+					.nav-burger-cross
+						margin-top: 20px
+						background-color: $neon-green
+						+size(40px, 4px)
+						&:nth-child(1)
+							transform: rotate(45deg)
+						&:nth-child(2)
+							margin-top: -5px
+							transform: rotate(-45deg)
+						@media (max-width: $media-l) and (orientation: landscape)
+							+size(30px, 3px)
+							&:nth-child(2)
+								margin-top: -4px
+
+			.nav-content
+				opacity: 0
+				overflow-y: auto
+				height: calc(100% - 60px)
+
+				.nav-list
+					width: 90%
+					margin: 0 auto
+					@media #{$small-phone}
+						margin-top: 100px
+						max-width: 300px
+
+					.nav-element
+						position: relative
+						text-align: left
+						margin: 30px 0
+						list-style: none
+						cursor: pointer
+						border: 0
+						padding: 0 15px
+						user-select: none
+						@media #{$small-phone} //11.04.17
+							text-align: center
+							margin: 25px auto
+						@media #{$big-phone}
+							margin: 25px auto
+						&:first-child  
+							margin-top: 70px
+							@media #{$small-phone}
+								margin-top: 0
+						&:hover,
+						&:focus
+							border-left: 5px solid $neon-green
+							border-right: 5px solid $neon-green
+							padding: 0 10px
+						.nav-link
+							display: block
+							color: $blue-grey-light
+							font-family: $text-font
+							text-decoration: none
+							letter-spacing: 3.5px
+							+text-elements(4, 3, 3, 3, 3)
+				.social-wrapper
+					position: absolute
+					top: calc(100% - 60px)
+					bottom: 0px
+					left: 0
+					right: 0
+					background-color: $dark-blue-light
+					text-align: center
+					padding-top: 10px
+					[class*="social-"]
+						display: inline-block
+						+size(40px, 40px)
+						padding: 2px 2px 2px 2px
+					.social-linked					
+						background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAb1BMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gCRHqTNAAAAJHRSTlMAyo9q9ugU+Tq+dvHs5cR9WT0x2c6pnpeFcRwIBLKKiW1fKREVfzo9AAAAl0lEQVQ4y+3QyQrDIBCA4elirRqrZt+6z/s/Y0fsraIEegnkv8jIB+LA1rKmVt+zqEHEPocKQpccEoS6HBprvE6wqHmGWM48TQlgjZQwCq6Ei6AOEQeAHaJ6MPQdftE+XBPiRwy9EohW0becjlsKSRqttylU0niiN4sUOn8RWw0aAnIe8djvJK+4BWhUpf0K3rVmArb+3wepQhRjPd9G2AAAAABJRU5ErkJggg==") left top no-repeat
+					.social-codepen				
+						margin: 0 10px
+						background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAaVBMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gB/oAzyAAAAInRSTlMA8lTouIwR+Rz276OhsK5saWMj4hjgqsWYlHxdSyEMqDw7Z2oIWwAAAS1JREFUOMudlOuygjAMhGNFoCDI3buek/d/SNnSkhmKHcb9obBNvjBtUlpKtb2isOIjjzrGFJDas9FehTGQgQUw/Zn53H+DxTkA0atirl4RnvN4FaNPRAfmA9EpsTAf8yQXRE8H8zESNMM8jARBjYUJpnLUG/ONrCoLQyYnRUNOIzYnp6ZIGGRTanbTAu9FOhumJO1Q7G3dWrORrm3OAGOHIPzXM+ZywW+ZIgeLU1AWTa6Cld2J7hlWVFrCjzITpOkBN4E1dKjSDWyN7EF6KjcuXBlq/8nqr2XoSpTyhqCON5Xb/uGyBeX3LZDNhCs5SHtrLK8eS7k4lk0HbFslCbaKNF2z0nQyWw4WbF9/EDzMAuaPlD/jMpyC8WEtxrwVzPYLI3z1/H6JAdb3HuYDA6A9DrVQxc8AAAAASUVORK5CYII=") left top no-repeat
+					.social-github					
+ 						background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAAflBMVEUAAAAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gAA5gCTYo5/AAAAKXRSTlMA725QC+l73MQk5N6soZ2TdnE4MffXzLGIgmVdV0Q+IBnJu7empYoVB8kAB6kAAADMSURBVDjL7dNJD4IwEIbhKa0gi4i4KwLufv//D0oaDzgzJujZ9wCXJ93S0r8vK3JHvWzWKChC2na/h/M2BPYKSoGVnRwTM4pOwQ5AqKAxWNpIN46cNPeIGW26HKJYICNRwU0DWc5RqaAzRwcFjX9CcwWtOXILibbEmww5p1aYKclqNmHGgS27T7zukWRGvBAXv8Xi6kW6qRzJNq8VWI8i0lui6t08q6MSmNaxNfDNSC+DT0X6aQb0qXmwDRKJZMshyMg3IFuZUZfZ0VtPmsQ7pCWFe4sAAAAASUVORK5CYII=") left top no-repeat
+
+.bg-overlay
+	display: none
+	z-index: 10
+	position: fixed
+	top: 0
+	bottom: 0
+	left: 0
+	right: 0
+	background-color: rgba(0, 0, 0, 0.7)
